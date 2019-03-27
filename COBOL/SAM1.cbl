@@ -1,7 +1,7 @@
       ****************************************************************
       * LICENSED MATERIALS - PROPERTY OF IBM
       * "RESTRICTED MATERIALS OF IBM"
-      * (C) COPYRIGHT IBM CORPORATION 2018. ALL RIGHTS RESERVED
+      * (C) COPYRIGHT IBM CORPORATION 2018, 2019. ALL RIGHTS RESERVED
       * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
       * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
       * CONTRACT WITH IBM CORPORATION
@@ -112,6 +112,7 @@ R2    *     * Add logic to process Crunch transactions
            05  INCR-CUST-ID            PIC 9(5)  VALUE 0.
            05  START-CUST-ID           PIC 9(5)  VALUE 0.
            05  MAX-CUST-ID             PIC 9(5)  VALUE 0.
+           05  SAM2                    PIC X(8)  VALUE 'SAM2'.
       *
       * some additional comments
       * some more additional comments
@@ -309,9 +310,8 @@ R2         END-IF.
       *
       *        Subroutine SAM2 will apply an update to a customer record
       *
-               CALL 'SAM2' USING CUST-REC, TRANSACTION-RECORD,
-                                      WS-TRAN-OK, WS-TRAN-MSG,
-R2                                    SAM2-PARMS
+               CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
+                                      WS-TRAN-OK, WS-TRAN-MSG
                IF WS-TRAN-OK NOT = 'Y'
                    MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
                    MOVE SPACES      TO ERR-MSG-DATA2
