@@ -311,7 +311,8 @@ R2         END-IF.
       *        Subroutine SAM2 will apply an update to a customer record
       *
                CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
-                                      WS-TRAN-OK, WS-TRAN-MSG
+                                      WS-TRAN-OK, WS-TRAN-MSG,
+R2                                    SAM2-PARMS
                IF WS-TRAN-OK NOT = 'Y'
                    MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
                    MOVE SPACES      TO ERR-MSG-DATA2
